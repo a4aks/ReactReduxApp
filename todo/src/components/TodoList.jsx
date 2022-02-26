@@ -1,11 +1,14 @@
 import React,{useState} from 'react';
+import { useSelector } from 'react-redux';
 
 export const TodoList = () => {
-    const [title, setTitle] = useState("");
+    const todos = useSelector((state) => state.todos);
+    console.log(todos);
   return (
     <div>
-        <h3>ADD TODO</h3>
-        <input type ="text" value = {title} onChange={(e) =>setTitle(e.currentTarget.value)}/>
+        {todos.map((item) =>{
+           return <div key={item.id}> {item.title} </div>
+        })}
     </div>
-  )
-}
+  );
+};
