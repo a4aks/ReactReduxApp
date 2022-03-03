@@ -1,0 +1,24 @@
+{
+  "todos": [
+    {
+      "value": "Ashish",
+      "id": 1
+    },
+    {
+      "value": "Learn CDS",
+      "id": 2
+    },
+    {
+      "value": "ASHI",
+      "id": 3
+    },
+    {
+      "value": "Learn CSS",
+      "id": 4
+    },
+    {
+      "value": "Learn Redux",
+      "id": 5
+    }
+  ]
+}

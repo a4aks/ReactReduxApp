@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import {login , logout} from "../Redux/auth/auth.action";
+import {logout} from "../Redux/auth/auth.action";
 
 export const Navbar = () => {
   const isUserLoggedIn = useSelector((state) => state.auth.isUserLoggedIn);
@@ -19,10 +19,8 @@ export const Navbar = () => {
       <NavLink to="/about">About</NavLink>
       <NavLink to="/contact">Contact</NavLink>
 
-      {isUserLoggedIn ? (
+      {isUserLoggedIn && (
         <button onClick={() => dispatch(logout())}>Logout</button>
-      ) : (
-        <button onClick={() => dispatch(login())}>Login</button>
       )}
     </div>
   );

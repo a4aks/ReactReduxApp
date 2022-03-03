@@ -1,0 +1,30 @@
+{
+    "users": 
+    [ 
+        { 
+            "id": "a4aks",
+            "password": "12345"
+       } 
+    ],
+
+    "posts": 
+    [ 
+        {
+            "id":"1" , 
+            "post_title": "Learn React", 
+            "post_body": "React is very easy", 
+            "authod_id":"1", 
+            "authod_username": "ashish" 
+        }
+    ],
+    "comments": 
+    [  
+        { 
+           " id":"1" , 
+           "author_id":"1", 
+           "author_name": "ashish", 
+           "post_id":"1", 
+           "comment_details": "" 
+        } 
+    ]
+}

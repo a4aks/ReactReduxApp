@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import "./App.css";
+import { useSelector } from "react-redux";
+import { Navbar } from "./components/Navbar";
+import {Users} from "./pages/Users";
+import {Post} from "./pages/Post";
+import { Login } from "./pages/Login";
+import { useEffect } from "react";
+import { login } from "./Redux/auth/auth.action";
 
 function App() {
+  const isUserLoggedIn = useSelector((state) => state.auth.isUserLoggedIn);
+  const navigate = useNavigate();
+  const {pathname} = useLocation();
+
+  useEffect(() =>{
+    if(isUserLoggedIn){
+      if(pathname === "/login")  navigate("/");
+      else navigate(pathname);
+    }
+    else{
+      navigate("/login")
+    }
+  },[navigate, isUserLoggedIn, pathname])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Navbar/>
+    <Routes>
+       <Route path = "/" element = {<Users />} />
+       <Route path = "post" element = {<Post />} />
+       <Route path = "login" element = {<Login />} />
+    </Routes>
     </div>
-  );
-}
+  );}
 
 export default App;

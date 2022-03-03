@@ -1,10 +1,17 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { TodoInput } from "./TodoInput";
 import { Todo } from "./Todo";
+import { useEffect } from "react";
+import { getTodo } from "../Redux/todos/todos.api";
 
 export const Todos = () => {
   const todos = useSelector((state) => state.todos.data);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getTodo)
+  }, [])
 
   return (
     <div>
