@@ -4,7 +4,7 @@ import { TodoInput } from "./TodoInput";
 import { Todo } from "./Todo";
 
 export const Todos = () => {
-  const todos = useSelector((state) => state.todo);
+  const todos = useSelector((state) => state.todos.data);
 
   return (
     <div>

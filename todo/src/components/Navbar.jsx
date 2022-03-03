@@ -1,8 +1,7 @@
 import React from "react";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import {login , logout} from "../Redux/action";
+import {login , logout} from "../Redux/auth/auth.action";
 
 export const Navbar = () => {
   const isUserLoggedIn = useSelector((state) => state.auth.isUserLoggedIn);

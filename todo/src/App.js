@@ -7,7 +7,7 @@ import {About} from "./pages/About";
 import {Contact} from "./pages/Contact";
 import { Login } from "./pages/Login";
 import { useEffect } from "react";
-import { login } from "./Redux/action";
+import { login } from "./Redux/auth/auth.action";
 
 function App() {
   const isUserLoggedIn = useSelector((state) => state.auth.isUserLoggedIn);
