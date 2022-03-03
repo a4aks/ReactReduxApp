@@ -6,7 +6,7 @@ import { useToast } from "@chakra-ui/react";
 import { Button, Input, Flex} from "@chakra-ui/react";
 
 export const Login = () => {
-  const [email, setEmail] = useState("eve.holt@reqres.in");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const authState = useSelector((state) => state.auth);
