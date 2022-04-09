@@ -32,7 +32,9 @@ export const Register = () => {
       },
     })
       .then((res) => {
-         navigate("/login");
+         console.log(res.error);
+        //  navigate("/login");
+        console.log(res.message);
       })
       .catch((err) => console.log(err));
   }

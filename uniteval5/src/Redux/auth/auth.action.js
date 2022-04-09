@@ -1,12 +1,5 @@
-// action types
-export const USER_LOGIN_REQUEST = "USER_LOGIN_REQUEST";
-export const USER_LOGIN_SUCCESS = "USER_LOGIN_SUCCESS";
-export const USER_LOGIN_ERROR = "USER_LOGIN_ERROR";
 
-
-export const USER_LOGOUT = "USER_LOGOUT";
-// action creator
-// function which creates action object.
+import { USER_LOGIN_ERROR, USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT } from "./auth.actionType";
 
 export const loginRequest = () =>({
     type:USER_LOGIN_REQUEST,

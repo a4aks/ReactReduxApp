@@ -1,59 +1,63 @@
-import React, { useContext, useState } from "react";
-import {Link} from 'react-router-dom';
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../Redux/auth/auth.api";
+import { useToast } from "@chakra-ui/react";
+import { Button, Input, Flex} from "@chakra-ui/react";
 
 export const Login = () => {
-  const [login, setLogin] = useState({
-    username: "",
-    password: "",
-  });
+  const [email, setEmail] = useState("eve.holt@reqres.in");
+  const [password, setPassword] = useState("");
 
-  const handleChange = (e) => {
-    const { id, value } = e.target;
-    setLogin({
-      ...login,
-      [id]: value,
-    });
-  };
-  const { username, password } = login;
+  const authState = useSelector((state) => state.auth);
+  const { isLoading, error, isUserLoggedIn } = authState;
+  const toast = useToast();
+
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(login);
-
-    fetch(`https://masai-api-mocker.herokuapp.com/auth/login`, {
-      method: "POST",
-      body: JSON.stringify(login),
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res.token);
-      })
-      .catch((err) => console.log(err));
+    if (!isLoading) {
+      e.preventDefault();
+      dispatch(login({ email, password }));
+    }
   };
+
+  useEffect(() => {
+    if (authState.error) {
+      toast({
+        title: `Something went wrong`,
+        status: "error",
+        isClosable: true,
+      });
+    } else if (authState.isUserLoggedIn) {
+      toast({
+        title: `Logged-in Successfully`,
+        status: "success",
+        isClosable: true,
+        position: "top-right",
+      });
+    }
+  }, [toast, authState]);
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <h2>LOGIN PAGE</h2>
-        <input
-          type="text"
-          id="username"
-          placeholder="Enter Username"
-          value={username}
-          onChange={handleChange}
-        />
-        <br />
-        <input
-          type="password"
-          id="password"
-          placeholder="Enter Password"
-          value={password}
-          onChange={handleChange}
-        />
-        <br />
-        <Link to = {`/home/${login.username}`}> LOGIN</Link>
+      
+          <input
+            type="email"
+            placeholder="email"
+            value={email}
+            onChange={(e) => setEmail(e.currentTarget.value)}
+          />
+          <input
+            type="password"
+            placeholder="password"
+            value={password}
+            onChange={(e) => setPassword(e.currentTarget.value)}
+          />
+        <div>
+          <input type="submit" value= "Login"/>
+        </div>
       </form>
     </div>
   );
